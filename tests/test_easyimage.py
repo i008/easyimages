@@ -37,7 +37,7 @@ def test_lazy_image_from_url():
 
 
 def test_easy_image_from_torch():
-    image = Image.open(os.path.join(dir_path, './test_data/image_folder/img_00000005.jpg'))
+    image = Image.open(os.path.join(dir_path, './test_data/image_folder/img_00000001.jpg'))
 
     torch_image = ToTensor()(image)
 
