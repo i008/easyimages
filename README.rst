@@ -23,8 +23,7 @@ easyimages
 Images made easy
 
 
-* Free software: MIT license
-* Documentation: https://easyimages.readthedocs.io.
+
 
 
 Features
