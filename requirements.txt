@@ -1,0 +1,8 @@
+torch==0.4.1
+torchvision==0.2.1
+imutils==0.4.6
+matplotlib==2.1.2
+requests==2.11.1
+numpy==1.14.5
+ipython==6.5.0
+Pillow==5.2.0
