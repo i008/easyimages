@@ -16,6 +16,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 import requests
+import torch
 import torchvision
 from IPython.display import HTML, display
 from PIL import Image
@@ -45,6 +46,11 @@ def figure2img(f):
     buf.seek(0)
     im = Image.open(buf)
     return im
+
+
+def denormalize_img(image, mean, std):
+    return image * torch.Tensor(np.array(std).reshape(3, 1, 1)) + \
+           torch.Tensor(np.array(mean).reshape(3, 1, 1))
 
 
 def visualize_bboxes(image, boxes, threshold=0.1, return_format='PIL'):
