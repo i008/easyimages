@@ -2,7 +2,160 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d59bf655-f1df-410a-8701-10493255e85e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/requirements_dev.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements_dev.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000004.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000005.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000006.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000007.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000008.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000009.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000010.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000011.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000012.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000013.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000014.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000015.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000016.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000017.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000018.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000019.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000020.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000021.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000022.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000023.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000024.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000025.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000026.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000027.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000028.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000029.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000030.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000031.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000032.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000033.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000034.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000035.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000036.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000037.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000038.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000039.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000040.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000041.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000042.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000043.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000044.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000045.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000046.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000047.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000048.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000049.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000050.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000051.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000052.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000053.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000054.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000055.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000056.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000057.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000058.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000059.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000060.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000061.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000062.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000063.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000064.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000065.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000004.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000005.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000006.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000007.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000008.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000009.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000010.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000011.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000012.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000013.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000014.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000015.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000016.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000017.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000018.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000019.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000020.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000021.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000022.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000023.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000024.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000025.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000026.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000027.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000028.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000029.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000030.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000031.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000032.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000033.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000034.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000035.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000036.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000037.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000038.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000039.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000040.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000041.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000042.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000043.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000044.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000045.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000046.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000047.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000048.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/hierarchy_images/Zig_Zag-Patterned_Shorts/img_00000049.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/XXXX.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000004.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000005.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000007.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000008.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000009.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000010.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000011.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000012.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000013.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000014.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000015.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000016.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000017.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000018.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000019.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000020.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000021.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000022.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000023.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000024.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000025.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000026.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000027.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000028.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000029.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000030.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000031.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000032.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000033.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000034.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000035.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000036.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000037.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000038.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000039.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000040.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000041.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000042.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000043.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000044.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000045.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000046.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data/image_folder/img_00000047.jpg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,32 +169,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="test_easyimage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_easyimage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="setup.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/setup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="15" column="40" lean-forward="true" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
+            <state relative-caret-position="365">
+              <caret line="35" selection-start-line="35" selection-end-line="35" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MANIFEST.in" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MANIFEST.in">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" column="11" lean-forward="true" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+            <state relative-caret-position="270">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Makefile" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Makefile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="540">
+              <caret line="79" column="31" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -50,7 +209,7 @@
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1690">
-              <caret line="99" lean-forward="true" selection-start-line="99" selection-end-line="99" />
+              <caret line="99" selection-start-line="99" selection-end-line="99" />
             </state>
           </provider>
         </entry>
@@ -60,7 +219,7 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="requirements_dev.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="requirements_dev.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/requirements_dev.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="342">
@@ -81,11 +240,6 @@
               <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="setup.cfg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/setup.cfg">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="easyimages.py" pinned="false" current-in-tab="false">
@@ -124,11 +278,13 @@
         <option value="$PROJECT_DIR$/easyimages/__init__.py" />
         <option value="$PROJECT_DIR$/tests/test_easyimage.py" />
         <option value="$PROJECT_DIR$/.travis.yml" />
-        <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/easyimages/easyimages.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/requirements_dev.txt" />
+        <option value="$PROJECT_DIR$/Makefile" />
+        <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/MANIFEST.in" />
       </list>
     </option>
   </component>
@@ -142,8 +298,9 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1465" />
+    <option name="x" value="-50" />
+    <option name="y" value="470" />
+    <option name="width" value="1885" />
     <option name="height" value="1177" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -162,11 +319,6 @@
             <path>
               <item name="easyimages" type="b2602c69:ProjectViewProjectNode" />
               <item name="easyimages" type="462c0819:PsiDirectoryNode" />
-              <item name="easyimages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="easyimages" type="b2602c69:ProjectViewProjectNode" />
-              <item name="easyimages" type="462c0819:PsiDirectoryNode" />
               <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -180,7 +332,7 @@
               <item name="easyimages" type="462c0819:PsiDirectoryNode" />
               <item name="tests" type="462c0819:PsiDirectoryNode" />
               <item name="test_data" type="462c0819:PsiDirectoryNode" />
-              <item name="hierarchy_images" type="462c0819:PsiDirectoryNode" />
+              <item name="image_folder" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -255,8 +407,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1465" height="1177" extended-state="0" />
-    <editor active="true" />
+    <frame x="-50" y="470" width="1885" height="1177" extended-state="0" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
@@ -267,7 +418,7 @@
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="right" id="JSON Viewer" />
       <window_info anchor="right" id="Jenkins" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24947295" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19262072" />
       <window_info anchor="bottom" id="Docker" />
       <window_info anchor="right" id="Database" />
       <window_info anchor="right" id="SciView" />
@@ -348,29 +499,15 @@
     <entry file="file://$PROJECT_DIR$/setup.cfg">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="40" lean-forward="true" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1690">
-          <caret line="99" lean-forward="true" selection-start-line="99" selection-end-line="99" />
+          <caret line="99" selection-start-line="99" selection-end-line="99" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AUTHORS.rst">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="11" lean-forward="true" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/easyimages/easyimages.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -396,6 +533,34 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="79" column="31" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MANIFEST.in">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
