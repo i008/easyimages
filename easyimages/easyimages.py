@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-"""Main module."""
-
 import io
 import os
 import pathlib
@@ -9,96 +7,19 @@ import urllib
 from collections import namedtuple
 from concurrent.futures import ThreadPoolExecutor
 from itertools import chain
-from itertools import cycle
 
 import PIL
-import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 import requests
-import torch
 import torchvision
 from IPython.display import HTML, display
 from PIL import Image
 from imutils.convenience import build_montages
+from easyimages.utils import denormalize_img, figure2img, visualize_bboxes
 
 bbox = namedtuple('bbox_abs', ['x1', 'y1', 'x2', 'y2', 'score', 'label_name'])
 label = namedtuple('label', ['label'])
-
-
-def figure2img(f):
-    """
-    Converts a Matplotlib plot into a PNG image.
-
-    Parameters
-    ----------
-    f: Matplotlib plot
-        Plot to convert
-
-    Returns
-    -------
-    Image
-        PNG Image
-    """
-
-    buf = io.BytesIO()
-    f.savefig(buf, bbox_inches='tight', pad_inches=0)
-    buf.seek(0)
-    im = Image.open(buf)
-    return im
-
-
-def denormalize_img(image, mean, std):
-    return image * torch.Tensor(np.array(std).reshape(3, 1, 1)) + \
-           torch.Tensor(np.array(mean).reshape(3, 1, 1))
-
-
-def visualize_bboxes(image, boxes, threshold=0.1, return_format='PIL'):
-    if not isinstance(image, np.ndarray):
-        # othweriwse assume PIL
-        image = np.array(image)
-
-    cycol = cycle('bgrcmk')
-    detection_figure = plt.figure(frameon=False)
-    dpi = mpl.rcParams['figure.dpi']
-
-    imrows, imcols = image.shape[0], image.shape[1]
-    detection_figure.set_size_inches((imrows / dpi) * 1.5, (imcols / dpi) * 1.5)
-    current_axis = plt.Axes(detection_figure, [0., 0., 1., 1.])
-    current_axis.set_axis_off()
-    detection_figure.add_axes(current_axis)
-    current_axis.imshow(image)
-
-    for box in boxes:
-        if box.score and box.score < threshold:
-            continue
-
-        label = '{0} {1:.2f}'.format(box.label_name, box.score or '1')
-        color = next(cycol)
-        line = 4
-        current_axis.add_patch(
-            plt.Rectangle((box.x1, box.y1),
-                          box.x2 - box.x1,
-                          box.y2 - box.y1,
-                          color=color,
-                          fill=False, linewidth=line))
-
-        current_axis.text(box.x1, box.y1, label, size='x-large', color='white',
-                          bbox={'facecolor': color, 'alpha': 1.0})
-
-    current_axis.get_xaxis().set_visible(False)
-    current_axis.get_yaxis().set_visible(False)
-    plt.close()
-
-    if return_format == 'PIL':
-        return figure2img(detection_figure).convert('RGB')
-
-    elif return_format == 'NP':
-        return np.array(figure2img(detection_figure))[:, :, :3]
-
-    else:
-        return detection_figure
-
 
 class EasyImage:
     def __repr__(self):
