@@ -83,6 +83,6 @@ def visualize_bboxes(image, boxes, threshold=0.1, return_format='PIL'):
         return detection_figure
 
 
-def make_notebook_wider()
+def make_notebook_wider():
     from IPython.display import HTML, display
     display(HTML("<style>.container { width:100% !important; }</style>"))
