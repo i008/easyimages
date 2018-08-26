@@ -5,7 +5,8 @@
 
 from setuptools import setup, find_packages
 from pip.req import parse_requirements
-from easyimages._version import __version__
+import os
+__version__ = '0.5.4'
 
 with open('README.MD') as readme_file:
     readme = readme_file.read()
@@ -14,7 +15,11 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 
-install_reqs = parse_requirements('./requirements.txt', session='hack')
+dir_path = os.path.dirname(os.path.realpath(__file__))
+req_path = os.path.join(dir_path, 'requirements.txt')
+
+
+install_reqs = parse_requirements(req_path, session='hack')
 
 # reqs is a list of requirement
 # e.g. ['django==1.5.1', 'mezzanine==1.4.6']

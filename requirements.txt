@@ -18,3 +18,4 @@ numpy==1.14.5
 ipython==6.5.0
 Pillow==5.2.0
 opencv-python
+tox-travis
