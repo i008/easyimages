@@ -1,24 +1,10 @@
-==========
-easyimages
-==========
-![kjlkj](https://img.shields.io/pypi/v/easyimages.svg)
 
+# easyimages
 
-.. image:: https://img.shields.io/pypi/v/easyimages.svg
-        :target: https://pypi.python.org/pypi/easyimages
+![](https://img.shields.io/pypi/v/easyimages.svg)
 
-.. image:: https://img.shields.io/travis/i008/easyimages.svg
-        :target: https://travis-ci.org/i008/easyimages
-
-.. image:: https://readthedocs.org/projects/easyimages/badge/?version=latest
-        :target: https://easyimages.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
-
-
-.. image:: https://pyup.io/repos/github/i008/easyimages/shield.svg
-     :target: https://pyup.io/repos/github/i008/easyimages/
-     :alt: Updates
-
+![](https://img.shields.io/travis/i008/easyimages.svg)
+![](https://pyup.io/repos/github/i008/easyimages/shield.svg)
 
 
 # Images made easy
