@@ -10,8 +10,6 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 import subprocess
 
-
-
 def figure2img(f):
     """
     Converts a Matplotlib plot into a PNG image.
@@ -98,7 +96,7 @@ def make_notebook_wider():
 
 def get_execution_context():
     context = get_ipython().__class__.__name__
-    if context is None:
+    if context == 'NoneType':
         return "regular_python"
 
     if context == 'InteractiveShellEmbed':
@@ -106,6 +104,8 @@ def get_execution_context():
 
     if context == 'ZMQInteractiveShell':
         return "jupyter"
+
+    print(type(context))
 
 
 def draw_text_on_image(image, text, font_size):

@@ -4,7 +4,7 @@
 
 __author__ = """Jakub Cieslik"""
 __email__ = 'kubacieslik@gmail.com'
-__version__ = '0.5.0'
+__version__ = '0.5.1'
 
 
 from .utils import get_execution_context

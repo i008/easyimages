@@ -7,10 +7,10 @@ from setuptools import setup, find_packages
 from pip.req import parse_requirements
 from easyimages import __version__
 
-with open('README.MDMD') as readme_file:
+with open('README.MD') as readme_file:
     readme = readme_file.read()
 
-with open('HISTORY.MD') as history_file:
+with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 

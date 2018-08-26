@@ -80,6 +80,8 @@ class EasyImage:
             self.image.show()
         if (CTX == 'terminal' or CTX == 'python') and inline:
             self.show_inline()
+        if CTX == 'regular_python':
+            self.image.show()
         else:
             return self.image
 
