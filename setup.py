@@ -5,7 +5,7 @@
 
 from setuptools import setup, find_packages
 from pip.req import parse_requirements
-from easyimages import __version__
+from easyimages._version import __version__
 
 with open('README.MD') as readme_file:
     readme = readme_file.read()
