@@ -1,11 +1,10 @@
 
 # easyimages
 
-![](https://img.shields.io/pypi/v/easyimages.svg)
-![](https://img.shields.io/travis/i008/easyimages.svg)
-![](https://pyup.io/repos/github/i008/easyimages/shield.svg)
+[![Foo](https://img.shields.io/pypi/v/easyimages.svg)](https://pypi.python.org/pypi/easyimages)
+[![Foo](https://img.shields.io/travis/i008/easyimages.svg)](https://travis-ci.org/i008/easyimages)
+[![Foo](https://pyup.io/repos/github/i008/easyimages/shield.svg)](https://pyup.io/repos/github/i008/easyimages/)
 
-[![Foo](https://img.shields.io/pypi/v/easyimages.svg)](http://google.com.au/)
 
 # Images made easy
 
