@@ -1,6 +1,7 @@
 ==========
 easyimages
 ==========
+![kjlkj](https://img.shields.io/pypi/v/easyimages.svg)
 
 
 .. image:: https://img.shields.io/pypi/v/easyimages.svg
