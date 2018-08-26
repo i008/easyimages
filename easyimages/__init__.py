@@ -4,6 +4,12 @@
 
 __author__ = """Jakub Cieslik"""
 __email__ = 'kubacieslik@gmail.com'
-__version__ = '0.2.0'
+__version__ = '0.5.0'
 
+
+from .utils import get_execution_context
 from .easyimages import EasyImage, EasyImageList, bbox
+from .logger import logger
+
+
+logger.info("[info][easyimages] is running in {} context".format(get_execution_context()))

@@ -4,17 +4,24 @@
 """The setup script."""
 
 from setuptools import setup, find_packages
+from pip.req import parse_requirements
+from easyimages import __version__
 
-with open('README.rst') as readme_file:
+with open('README.MDMD') as readme_file:
     readme = readme_file.read()
 
-with open('HISTORY.rst') as history_file:
+with open('HISTORY.MD') as history_file:
     history = history_file.read()
 
-requirements = ['Click>=6.0', ]
+
+install_reqs = parse_requirements('./requirements.txt', session='hack')
+
+# reqs is a list of requirement
+# e.g. ['django==1.5.1', 'mezzanine==1.4.6']
+reqs = [str(ir.req) for ir in install_reqs]
+
 
 setup_requirements = ['pytest-runner', ]
-
 test_requirements = ['pytest', ]
 
 setup(
@@ -29,7 +36,7 @@ setup(
         'Programming Language :: Python :: 3.7',
     ],
     description="Images made easy",
-    install_requires=requirements,
+    install_requires=reqs,
     license="MIT license",
     long_description=readme + '\n\n' + history,
     include_package_data=True,
@@ -40,6 +47,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/i008/easyimages',
-    version='0.2.0',
+    version=__version__,
     zip_safe=False,
 )

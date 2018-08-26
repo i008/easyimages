@@ -1,4 +1,3 @@
-
 import io
 from itertools import cycle
 
@@ -6,7 +5,11 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
-from PIL import Image
+from IPython import get_ipython
+from PIL import Image, ImageDraw, ImageFont
+import os
+import subprocess
+
 
 
 def figure2img(f):
@@ -83,6 +86,30 @@ def visualize_bboxes(image, boxes, threshold=0.1, return_format='PIL'):
         return detection_figure
 
 
+def get_pil_font(font_size):
+    font = ImageFont.truetype("Verdana.ttf", font_size)
+    return font
+
+
 def make_notebook_wider():
     from IPython.display import HTML, display
     display(HTML("<style>.container { width:100% !important; }</style>"))
+
+
+def get_execution_context():
+    context = get_ipython().__class__.__name__
+    if context is None:
+        return "regular_python"
+
+    if context == 'InteractiveShellEmbed':
+        return "terminal"
+
+    if context == 'ZMQInteractiveShell':
+        return "jupyter"
+
+
+def draw_text_on_image(image, text, font_size):
+    draw = ImageDraw.Draw(image)
+    draw.text((50, 0), text, font=get_pil_font(font_size), fill=(0, 0, 0))
+    return None
+
