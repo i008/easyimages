@@ -20,10 +20,6 @@ install_reqs = parse_requirements('./requirements.txt', session='hack')
 # e.g. ['django==1.5.1', 'mezzanine==1.4.6']
 reqs = [str(ir.req) for ir in install_reqs]
 
-
-setup_requirements = ['pytest-runner', ]
-test_requirements = ['pytest', ]
-
 setup(
     author="Jakub Cieslik",
     author_email='kubacieslik@gmail.com',
@@ -43,9 +39,9 @@ setup(
     keywords='easyimages',
     name='easyimages',
     packages=find_packages(include=['easyimages']),
-    setup_requires=setup_requirements,
+    setup_requires=reqs,
     test_suite='tests',
-    tests_require=test_requirements,
+    tests_require=reqs,
     url='https://github.com/i008/easyimages',
     version=__version__,
     zip_safe=False,
