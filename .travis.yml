@@ -1,0 +1,20 @@
+language: python
+python:
+- 3.6
+<<<<<<< HEAD
+install: pip install -q -r requirements.txt
+script: tox
+=======
+install: python setup.py install
+script: pytest
+>>>>>>> 0f3d4af... test
+deploy:
+  provider: pypi
+  distributions: sdist bdist_wheel
+  user: i008
+  password:
+    secure: AgaVDQflevVfAfQ9f1Qmx1VAAeu6YOzCF/g3yFRX4vmJSe5Cr5o8lHI3CeE7WBEt3TYenxa5kfEhEnLIqwiclC634xoXLv+fiMEDjfYPQd4laJCNMADxB/c1oolNES6P76E7OHAWO2xQ+V/JadBoD/aIOB75V16t3VP1EFk1VcKis50LPeqFuETJ4W3X+R6p3PiO2RmkDtIHO5n/mM0HJ58g55IeJoicIiBm5GoM0gJ+aShUrG7TXxXp4RR0gFxdmakac3oTr1n07sPbVpRGX7Yflkq+EcY/ppTb2yLB+XvEVV6p4wvjq+wzZZsZPtL/jtrf0pwEx6P3MkH6zytdzaRlR3hkds9FWqLDwMmGmC/73Inj6MudLsCmS6t0muQiXoQjasa0o2a6fQWKmpbypDQnpeQHkSIuk0002yJ0d4A3NaMNkBTjD4Q3qSHxpXCkNjgCuQXS7TVeuM+oCHFNtIHMpVDKwXiyFGZ3WuIVgsQpvKxLibY8Cx3x45h8frNOkAmBJ+qXObVqnht/rjLvGzYq8G2bfBJXYz+z8BuGw04PsRFpL4fAuxOkZryxcKzGqxotQXCHSY9O8eTUs+UdKzer91QQH4QZqjTacF/J7tzI/T3Hob+xIcml/eWMS36nghOAANS5C6j9TACeSdqmcBh7fZeB7cI5upZ5UqmIQw4=
+  on:
+    tags: true
+    repo: i008/easyimages
+    python: 3.6
