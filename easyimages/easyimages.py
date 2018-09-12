@@ -236,6 +236,16 @@ class EasyImageList:
 
         return self
 
+    def save(self, base_path):
+        def _save(im):
+            try:
+                im.save(base_path)
+            except:
+                print("failed saving")
+
+        with ThreadPoolExecutor(100) as tpe:
+            futures = tpe.map(_save, self.images)
+
     def draw_boxes(self):
         def _draw(im):
             try:
@@ -281,13 +291,13 @@ class EasyImageList:
         return cls(list_of_images)
 
     @classmethod
-    def from_list_of_urls(cls, list_of_image_urls, download=True):
-        ims = [EasyImage.from_url(url, download=download) for url in list_of_image_urls]
+    def from_list_of_urls(cls, list_of_image_urls, lazy=True):
+        ims = [EasyImage.from_url(url, lazy=lazy) for url in list_of_image_urls]
         return cls(ims)
 
     @classmethod
     def from_torch_batch(cls, batch):
-        pass
+        raise NotImplementedError
 
     def visualize_grid_html(self, images,  open_browser=open_browser, show=True):
         templates = []
@@ -296,9 +306,9 @@ class EasyImageList:
             if not 'http' in str(p):
                 if open_browser:
                     p = p.absolute()
-            if CTX == 'jupyter' and not open_browser:
+            if CTX == 'jupyter' and not open_browser and 'http' not in str(p):
                 import subprocess
-                notebook_path = pathlib.Path(subprocess.getoutput('pwd'))
+                notebook_path = pathlib.Path(os.getcwd())
                 try:
                     p = p.relative_to(notebook_path)
                 except ValueError:
@@ -317,11 +327,13 @@ class EasyImageList:
             display(HTML(html))
         return html
 
-    def to_html(self, by_class=True, custom_filter=None):
+    def to_html(self, by_class=True, sample=None):
         if self.all_labels and by_class:
             for label_name in self.all_labels:
                 print("Drawing {}".format(label_name))
                 images = list(filter(lambda x: label_name in x.label, self.images))
+                if sample:
+                    images = np.random.choice(images, sample)
                 html = self.visualize_grid_html(images, show=False)
                 display(HTML(html))
         else:
