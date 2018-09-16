@@ -3,7 +3,6 @@
 
 [![Foo](https://img.shields.io/pypi/v/easyimages.svg)](https://pypi.python.org/pypi/easyimages)
 [![Foo](https://img.shields.io/travis/i008/easyimages.svg)](https://travis-ci.org/i008/easyimages)
-[![Foo](https://pyup.io/repos/github/i008/easyimages/shield.svg)](https://pyup.io/repos/github/i008/easyimages/)
 
 
 # Info
@@ -150,8 +149,6 @@ easy_list = EasyImageList.from_multilevel_folder('./tests/test_data/hierarchy_im
 
 
 
-
-
 ```python
 # sometimes its handy to have a numpy array like image
 r = easy_list.visualize_grid_numpy(montage_shape=(3,2))
@@ -164,3 +161,7 @@ r = easy_list.visualize_grid_numpy(montage_shape=(3,2))
 #### visualize a big dataset
 
 ![png](example/vis.png)
+
+#### You can switch between classes you visualize with a notebook widget
+
+![png](example/widget.png)

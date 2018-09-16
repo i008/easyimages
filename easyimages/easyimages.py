@@ -18,17 +18,15 @@ from PIL import Image
 from imutils.convenience import build_montages
 from easyimages.utils import denormalize_img, visualize_bboxes, get_execution_context, draw_text_on_image
 import matplotlib.pyplot as plt
-
+import ipywidgets as widgets
+from ipywidgets import interact, interactive, fixed, interact_manual
 import subprocess
-
 
 bbox = namedtuple('bbox_abs', ['x1', 'y1', 'x2', 'y2', 'score', 'label_name'])
 label = namedtuple('label', ['label'])
 CTX = get_execution_context()
 
-
 dir_path = os.path.dirname(os.path.realpath(__file__))
-
 
 
 class EasyImage:
@@ -292,8 +290,7 @@ class EasyImageList:
     def from_torch_batch(cls, batch):
         pass
 
-
-    def visualize_grid_html(self,images, open_browser=open_browser):
+    def visualize_grid_html(self, images, open_browser=open_browser):
         templates = []
         for image in images:
             p = image.uri or image.url
@@ -322,7 +319,7 @@ class EasyImageList:
     def visualize_one_by_one(self):
         import cv2
         for image in self.images:
-            cv2.imshow('image', cv2.cvtColor(np.array(image.image),cv2.COLOR_RGB2BGR))
+            cv2.imshow('image', cv2.cvtColor(np.array(image.image), cv2.COLOR_RGB2BGR))
             cv2.waitKey(0)
             cv2.destroyAllWindows()
 
@@ -346,8 +343,23 @@ class EasyImageList:
                 raise ValueError("Inline mode only works in Iterm like emulators")
             easy_montage.show_inline()
         if CTX == 'jupyter':
-            plt.figure(figsize=(15,15))
+            plt.figure(figsize=(15, 15))
             plt.imshow(montage[0])
 
     def from_metadata_file(cls, metdata_file):
         pass
+
+    def widget(self):
+        w = widgets.SelectMultiple(
+            options=self.all_labels,
+            value=(),
+            # rows=10,
+            description='Select classes to show',
+            disabled=False
+        )
+
+        def activate(x):
+            images = [i for i in self.images if i.label[0] in x]
+            self.visualize_grid_html(images)
+
+        interact(activate, x=w)
