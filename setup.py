@@ -6,7 +6,11 @@
 from setuptools import setup, find_packages
 from pip._internal.req import parse_requirements
 import os
+<<<<<<< HEAD
 __version__ = '0.6.2'
+=======
+__version__ = '0.6.7'
+>>>>>>> 3b9803ff7721aabcdf7513a8000c672e697134e1
 
 with open('README.MD') as readme_file:
     readme = readme_file.read()

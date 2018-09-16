@@ -137,7 +137,6 @@ image2.draw_boxes().show()
 ![png](example/output_8_1.png)
 
 
-
 # EasyImageList()
 
 
@@ -148,12 +147,10 @@ easy_list = EasyImageList.from_multilevel_folder('./tests/test_data/hierarchy_im
 ```
 
 
-
 ```python
 # sometimes its handy to have a numpy array like image
 r = easy_list.visualize_grid_numpy(montage_shape=(3,2))
 ```
-
 
 ![png](example/output_12_0.png)
 
@@ -161,6 +158,7 @@ r = easy_list.visualize_grid_numpy(montage_shape=(3,2))
 #### visualize a big dataset
 
 ![png](example/vis.png)
+
 
 #### You can switch between classes you visualize with a notebook widget
 

@@ -3,6 +3,10 @@
 import io
 import os
 import pathlib
+<<<<<<< HEAD
+=======
+import subprocess
+>>>>>>> 3b9803ff7721aabcdf7513a8000c672e697134e1
 import urllib
 import uuid
 from collections import namedtuple
@@ -10,17 +14,26 @@ from concurrent.futures import ThreadPoolExecutor
 from itertools import chain
 
 import PIL
+<<<<<<< HEAD
+=======
+import matplotlib.pyplot as plt
+>>>>>>> 3b9803ff7721aabcdf7513a8000c672e697134e1
 import numpy as np
 import requests
 import torchvision
 from IPython.display import HTML, display
 from PIL import Image
 from imutils.convenience import build_montages
+<<<<<<< HEAD
 from easyimages.utils import denormalize_img, visualize_bboxes, get_execution_context, draw_text_on_image
 import matplotlib.pyplot as plt
 import ipywidgets as widgets
 from ipywidgets import interact, interactive, fixed, interact_manual
 import subprocess
+=======
+
+from easyimages.utils import denormalize_img, draw_text_on_image, get_execution_context, visualize_bboxes
+>>>>>>> 3b9803ff7721aabcdf7513a8000c672e697134e1
 
 bbox = namedtuple('bbox_abs', ['x1', 'y1', 'x2', 'y2', 'score', 'label_name'])
 label = namedtuple('label', ['label'])
@@ -237,6 +250,19 @@ class EasyImageList:
 
         return self
 
+<<<<<<< HEAD
+=======
+    def save(self, base_path):
+        def _save(im):
+            try:
+                im.save(base_path)
+            except:
+                print("failed saving")
+
+        with ThreadPoolExecutor(100) as tpe:
+            futures = tpe.map(_save, self.images)
+
+>>>>>>> 3b9803ff7721aabcdf7513a8000c672e697134e1
     def draw_boxes(self):
         def _draw(im):
             try:
@@ -262,7 +288,11 @@ class EasyImageList:
     @classmethod
     def from_multilevel_folder(cls, path, lazy=False):
         if not isinstance(path, pathlib.Path):
+<<<<<<< HEAD
             path = pathlib.Path(path)
+=======
+            path = pathlib.Path(path).absolute()
+>>>>>>> 3b9803ff7721aabcdf7513a8000c672e697134e1
 
         image_files = []
         for pattern in cls.IMAGE_FILE_TYPES:
@@ -282,12 +312,18 @@ class EasyImageList:
         return cls(list_of_images)
 
     @classmethod
+<<<<<<< HEAD
     def from_list_of_urls(cls, list_of_image_urls, download=True):
         ims = [EasyImage.from_url(url, download=download) for url in list_of_image_urls]
+=======
+    def from_list_of_urls(cls, list_of_image_urls, lazy=True):
+        ims = [EasyImage.from_url(url, lazy=lazy) for url in list_of_image_urls]
+>>>>>>> 3b9803ff7721aabcdf7513a8000c672e697134e1
         return cls(ims)
 
     @classmethod
     def from_torch_batch(cls, batch):
+<<<<<<< HEAD
         pass
 
     def visualize_grid_html(self, images, open_browser=open_browser):
@@ -296,6 +332,26 @@ class EasyImageList:
             p = image.uri or image.url
             if not 'http' in str(p) and open_browser:
                 p = p.absolute()
+=======
+        raise NotImplementedError
+
+    def visualize_grid_html(self, images,  open_browser=open_browser, show=True):
+        templates = []
+        for image in images:
+            p = image.uri or image.url
+            if not 'http' in str(p):
+                if open_browser:
+                    p = p.absolute()
+            if CTX == 'jupyter' and not open_browser and 'http' not in str(p):
+                import subprocess
+                notebook_path = pathlib.Path(os.getcwd())
+                try:
+                    p = p.relative_to(notebook_path)
+                except ValueError:
+                    raise ValueError(
+                        "In notebook mode your data has to stored within Jupyter access "
+                        "(has to be relative to  !pwd")
+>>>>>>> 3b9803ff7721aabcdf7513a8000c672e697134e1
             templates.append(self.GRID_TEMPLATE.format(url=p, label=image.label))
         html = ''.join(templates)
         if open_browser:
@@ -304,15 +360,30 @@ class EasyImageList:
             with open(p, 'w') as f:
                 f.write(html)
             webbrowser.open('file://' + p)
+<<<<<<< HEAD
         else:
             display(HTML(html))
 
     def to_html(self, by_class=True, custom_filter=None):
+=======
+        if show:
+            display(HTML(html))
+        return html
+
+    def to_html(self, by_class=True, sample=None):
+>>>>>>> 3b9803ff7721aabcdf7513a8000c672e697134e1
         if self.all_labels and by_class:
             for label_name in self.all_labels:
                 print("Drawing {}".format(label_name))
                 images = list(filter(lambda x: label_name in x.label, self.images))
+<<<<<<< HEAD
                 self.visualize_grid_html(images)
+=======
+                if sample:
+                    images = np.random.choice(images, sample)
+                html = self.visualize_grid_html(images, show=False)
+                display(HTML(html))
+>>>>>>> 3b9803ff7721aabcdf7513a8000c672e697134e1
         else:
             self.visualize_grid_html(self.images)
 
@@ -348,6 +419,7 @@ class EasyImageList:
 
     def from_metadata_file(cls, metdata_file):
         pass
+<<<<<<< HEAD
 
     def widget(self):
         w = widgets.SelectMultiple(
@@ -363,3 +435,5 @@ class EasyImageList:
             self.visualize_grid_html(images)
 
         interact(activate, x=w)
+=======
+>>>>>>> 3b9803ff7721aabcdf7513a8000c672e697134e1
