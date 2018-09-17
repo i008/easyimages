@@ -1,12 +1,16 @@
 import os
 import sys
+
+import PIL
+import torchvision
+
 sys.path.append('..')
 
 import pytest
 from PIL import Image
-from torchvision.transforms import ToTensor
+from torchvision.transforms import ToTensor, transforms
 
-from easyimages import EasyImage
+from easyimages import EasyImage, EasyImageList
 from easyimages import bbox
 
 
@@ -60,3 +64,26 @@ def test_error_when_trying_to_draw_boxes_when_not_provided():
     easy_image_new = EasyImage.from_file(p, lazy=False, boxes=boxes)
 
     assert easy_image_new != easy_image_old
+
+
+
+def test_from_pytorch_batch():
+    MEAN = [0.485, 0.456, 0.406]
+    STD = [0.229, 0.224, 0.225]
+
+    Trans = torchvision.transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize(mean=MEAN, std=STD),
+    ])
+    torch_image = Trans(PIL.Image.open('./tests/test_data/image_folder/img_00000003.jpg'))
+
+    image3 = EasyImage.from_torch(torch_image, mean=MEAN, std=STD)
+
+    assert isinstance(image3, EasyImage)
+
+
+def test_from_glob():
+    ilist = EasyImageList.from_glob('tests/test_data/image_folder/*.jpg')
+    assert len(ilist) == 3
+
+

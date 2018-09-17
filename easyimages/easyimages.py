@@ -21,6 +21,7 @@ import os
 from easyimages.utils import denormalize_img, draw_text_on_image, get_execution_context, visualize_bboxes
 from IPython.display import display, HTML
 import io
+import glob
 
 bbox = namedtuple('bbox_abs', ['x1', 'y1', 'x2', 'y2', 'score', 'label_name'])
 label = namedtuple('label', ['label'])
@@ -287,6 +288,10 @@ class EasyImageList:
         return cls(images)
 
     @classmethod
+    def from_glob(cls, pattern, lazy=True):
+        return cls([EasyImage.from_file(f, lazy=lazy) for f in glob.glob(pattern)])
+
+    @classmethod
     def from_list_of_images(cls, list_of_images):
         return cls(list_of_images)
 
@@ -296,17 +301,9 @@ class EasyImageList:
         return cls(ims)
 
     @classmethod
-    def from_torch_batch(cls, batch):
-        pass
+    def from_torch_batch(cls, batch, mean, std):
+        return cls([EasyImage.from_torch(im, mean=mean, std=std) for im in batch])
 
-    def visualize_grid_html(self, images, open_browser=open_browser):
-        templates = []
-        for image in images:
-            p = image.uri or image.url
-            if not 'http' in str(p) and open_browser:
-                p = p.absolute()
-
-        raise NotImplementedError
 
     def visualize_grid_html(self, images, open_browser=open_browser, show=True):
         templates = []
@@ -379,9 +376,6 @@ class EasyImageList:
         if CTX == 'jupyter':
             plt.figure(figsize=(15, 15))
             plt.imshow(montage[0])
-
-    def from_metadata_file(cls, metdata_file):
-        pass
 
     def widget(self):
         w = widgets.SelectMultiple(
