@@ -13,7 +13,6 @@ from torchvision.transforms import ToTensor, transforms
 from easyimages import EasyImage, EasyImageList
 from easyimages import bbox
 
-
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 
@@ -86,3 +85,9 @@ def test_from_glob():
     assert len(ilist) == 3
 
 
+def test_html_rendering():
+    ilist = EasyImageList.from_glob('tests/test_data/image_folder/*.jpg')
+
+    html = ilist.visualize_grid_html(ilist.images)
+
+    assert 'img_00000001' in html
