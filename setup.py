@@ -4,12 +4,14 @@
 """The setup script."""
 
 from setuptools import setup, find_packages
-from pip._internal.req import parse_requirements
+
+try:  # for pip >= 10
+    from pip._internal.req import parse_requirements
+except ImportError:  # for pip < 10
+    from pip.req import parse_requirements
 import os
 
-
-__version__ = '0.7.2'
-
+__version__ = '0.7.5'
 
 with open('README.MD') as readme_file:
     readme = readme_file.read()
