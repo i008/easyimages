@@ -73,7 +73,7 @@ image1.show()
 
 
 
-### image from file in CLI (iterm only) :
+#### image from file in CLI (iterm only) :
 
 ![png](example/easy_cli.png)
 
@@ -135,17 +135,22 @@ image2.draw_boxes().show()
 
 
 ![png](example/output_8_1.png)
+----
 
-
-# EasyImageList()
+#### Initialize EasyImageList in a number of ways:
 
 
 ```python
 easy_list = EasyImageList.from_multilevel_folder('./tests/test_data/hierarchy_images/')
-<ImageList with 6 EasyImages>
 
+<ImageList with 6 EasyImages>
 ```
 
+```python
+easy_list = EasyImageList.from_glob('tests/test_data/image_folder/*.jpg')
+
+<ImageList with 3 EasyImages>
+```
 
 ```python
 # sometimes its handy to have a numpy array like image

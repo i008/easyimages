@@ -206,7 +206,7 @@ class EasyImage:
 
 class EasyImageList:
     IMAGE_FILE_TYPES = ('*.jpg', '*.png', '*.tiff', '*.jpeg')
-    GRID_TEMPLATE = "<img style='width: 100px; height: 100px; margin: 1px; float: left; border: 0px solid black;'title={label} src='{url}'/>"
+    GRID_TEMPLATE = "<img style='width: {size}px; height: {size}px; margin: 1px; float: left; border: 0px solid black;'title={label} src='{url}'/>" # nopep8
     open_browser = CTX == 'terminal'
 
     def __len__(self):
@@ -221,31 +221,34 @@ class EasyImageList:
     def __init__(self, images, *args, **kwargs):
         self.images = images
 
-        self.all_labels = list(set(list(chain(*[im.label for im in images]))))
-
     def __repr__(self):
         return "<ImageList with {} EasyImages>".format(len(self.images))
+
+    @property
+    def all_labels(self):
+        return list(set(list(chain(*[im.label for im in self.images]))))
+
 
     def download(self):
         def _download(im):
             try:
                 im.download()
             except:
-                print("failed downloading")
+                print("failed downloading file {}".format(im.uri or im.url))
 
         with ThreadPoolExecutor(100) as tpe:
             futures = tpe.map(_download, self.images)
 
         return self
 
-    def save(self, base_path):
+    def save(self, base_path, n_threads=100):
         def _save(im):
             try:
                 im.save(base_path)
             except:
                 print("failed saving")
 
-        with ThreadPoolExecutor(100) as tpe:
+        with ThreadPoolExecutor(n_threads) as tpe:
             futures = tpe.map(_save, self.images)
 
     def draw_boxes(self):
@@ -260,14 +263,14 @@ class EasyImageList:
         return self
 
     @classmethod
-    def from_folder(cls, path, download=True, *args, **kwargs):
+    def from_folder(cls, path, lazy=True, *args, **kwargs):
         if not isinstance(path, pathlib.Path):
             path = pathlib.Path(path)
 
         image_files = []
         for pattern in cls.IMAGE_FILE_TYPES:
             image_files.extend(path.glob(pattern))
-        images = [EasyImage.from_file(image_path, download=download) for image_path in image_files]
+        images = [EasyImage.from_file(image_path, lazy=lazy) for image_path in image_files]
         return cls(images, *args, **kwargs)
 
     @classmethod
@@ -292,8 +295,8 @@ class EasyImageList:
         return cls([EasyImage.from_file(f, lazy=lazy) for f in glob.glob(pattern)])
 
     @classmethod
-    def from_list_of_images(cls, list_of_images):
-        return cls(list_of_images)
+    def from_list_of_images(cls, list_of_easyimages):
+        return cls(list_of_easyimages)
 
     @classmethod
     def from_list_of_urls(cls, list_of_image_urls, lazy=True):
@@ -304,8 +307,7 @@ class EasyImageList:
     def from_torch_batch(cls, batch, mean, std):
         return cls([EasyImage.from_torch(im, mean=mean, std=std) for im in batch])
 
-
-    def visualize_grid_html(self, images, open_browser=open_browser, show=True):
+    def visualize_grid_html(self, images, open_browser=open_browser, show=True, size=100):
         templates = []
         for image in images:
             p = image.uri or image.url
@@ -322,7 +324,7 @@ class EasyImageList:
                         "In notebook mode your data has to stored within Jupyter access "
                         "(has to be relative to  !pwd")
 
-            templates.append(self.GRID_TEMPLATE.format(url=p, label=image.label))
+            templates.append(self.GRID_TEMPLATE.format(url=p, label=image.label, size=size))
         html = ''.join(templates)
         if open_browser:
             import webbrowser
@@ -332,29 +334,31 @@ class EasyImageList:
             webbrowser.open('file://' + p)
 
         else:
-            display(HTML(html))
+            if show:
+                display(HTML(html))
+        return html
 
-    def to_html(self, by_class=True, sample=None):
+    def html(self, by_class=True, sample=None, size=100):
         if self.all_labels and by_class:
             for label_name in self.all_labels:
                 print("Drawing {}".format(label_name))
                 images = list(filter(lambda x: label_name in x.label, self.images))
-                self.visualize_grid_html(images)
                 if sample:
                     images = np.random.choice(images, sample)
-                html = self.visualize_grid_html(images, show=False)
-                display(HTML(html))
+                    print(images)
+                    print(len(images))
+                self.visualize_grid_html(images, show=True, size=size)
         else:
-            self.visualize_grid_html(self.images)
+            self.visualize_grid_html(self.images, size=size)
 
-    def visualize_one_by_one(self):
+    def one_by_one(self):
         import cv2
         for image in self.images:
             cv2.imshow('image', cv2.cvtColor(np.array(image.image), cv2.COLOR_RGB2BGR))
             cv2.waitKey(0)
             cv2.destroyAllWindows()
 
-    def visualize_grid_numpy(self, image_shape=100, montage_shape=None, inline=False):
+    def numpy_grid(self, image_shape=100, montage_shape=None, inline=False):
 
         images_np = [np.array(im.download().image) for im in self.images]
 
@@ -381,7 +385,6 @@ class EasyImageList:
         w = widgets.SelectMultiple(
             options=self.all_labels,
             value=(),
-            # rows=10,
             description='Select classes to show',
             disabled=False
         )
