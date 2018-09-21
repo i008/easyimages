@@ -164,6 +164,26 @@ class EasyImage:
         image = PIL.Image.fromarray(array)
         return cls(image)
 
+
+    @classmethod
+    def from_pil(cls, pil_image, *args, **kwargs):
+        """
+        :param pil_images:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+
+        if not pil_image.filename:
+            name = str(uuid.uuid4())[:6] + '.png'
+            uri = None
+        else:
+            name = str(pathlib.Path(pil_image.filename).name)
+            uri = pathlib.Path(pil_image.filename)
+
+        return cls(pil_image, name=name, uri=uri)
+
+
     def download(self, thread=True):
         if not self.downloaded:
             try:
@@ -226,7 +246,7 @@ class EasyImageList:
 
     @property
     def all_labels(self):
-        return list(set(list(chain(*[im.label for im in self.images]))))
+        return sorted(list(set(list(chain(*[im.label for im in self.images])))))
 
 
     def download(self):
@@ -307,6 +327,10 @@ class EasyImageList:
     def from_torch_batch(cls, batch, mean, std):
         return cls([EasyImage.from_torch(im, mean=mean, std=std) for im in batch])
 
+    @classmethod
+    def from_pil(cls, list_of_pil_images):
+        return cls([EasyImage.from_pil(i) for i in list_of_pil_images])
+
     def visualize_grid_html(self, images, open_browser=open_browser, show=True, size=100):
         templates = []
         for image in images:
@@ -345,8 +369,6 @@ class EasyImageList:
                 images = list(filter(lambda x: label_name in x.label, self.images))
                 if sample:
                     images = np.random.choice(images, sample)
-                    print(images)
-                    print(len(images))
                 self.visualize_grid_html(images, show=True, size=size)
         else:
             self.visualize_grid_html(self.images, size=size)
@@ -375,7 +397,7 @@ class EasyImageList:
 
         if CTX == 'terminal' and inline:
             if 'xterm' not in os.environ.get('TERM', 'None'):
-                raise ValueError("Inline mode only works in Iterm like emulators")
+                raise ValueError("Inline mode only works in ITERM-like emulators")
             easy_montage.show_inline()
         if CTX == 'jupyter':
             plt.figure(figsize=(15, 15))

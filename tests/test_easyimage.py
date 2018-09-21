@@ -91,3 +91,21 @@ def test_html_rendering():
     html = ilist.visualize_grid_html(ilist.images)
 
     assert 'img_00000001' in html
+
+
+def test_easyimage_from_pil():
+    Im = PIL.Image.open(
+        os.path.join(dir_path, './test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000002.jpg'))
+    ei = EasyImage.from_pil(Im)
+
+    assert 'img_0000' in ei.name
+    assert 'test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000002.jpg' in str(ei.uri)
+
+
+def test_easylist_from_pil():
+    Im = PIL.Image.open(
+        os.path.join(dir_path, './test_data/hierarchy_images/Boston_Celtics_Graphic_Tee/img_00000002.jpg'))
+
+    List = EasyImageList.from_pil([Im] * 10)
+
+    assert 'img_0000' in List[0].name
