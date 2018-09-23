@@ -1,27 +1,28 @@
 # -*- coding: utf-8 -*-
 
-
+import glob
+import io
+import os
+import pathlib
 import subprocess
 import urllib
 import uuid
 from collections import namedtuple
 from concurrent.futures import ThreadPoolExecutor
 from itertools import chain
-import pathlib
+
 import PIL
 import ipywidgets as widgets
 import matplotlib.pyplot as plt
 import numpy as np
 import requests
-import torchvision
+from IPython.display import display, HTML
 from PIL import Image
 from imutils.convenience import build_montages
 from ipywidgets import interact
-import os
-from easyimages.utils import denormalize_img, draw_text_on_image, get_execution_context, visualize_bboxes
-from IPython.display import display, HTML
-import io
-import glob
+
+from easyimages.utils import denormalize_img, draw_text_on_image, get_execution_context, visualize_bboxes, \
+    pil_resize_not_destructive
 
 bbox = namedtuple('bbox_abs', ['x1', 'y1', 'x2', 'y2', 'score', 'label_name'])
 label = namedtuple('label', ['label'])
@@ -44,7 +45,10 @@ class EasyImage:
                  uri=None,
                  boxes=None,
                  label=None,
-                 mask=None):
+                 mask=None,
+                 *args,
+                 **kwargs,
+                 ):
 
         assert isinstance(boxes, (list, type(None)))
         assert isinstance(label, (list, type(None)))
@@ -149,6 +153,8 @@ class EasyImage:
 
     @classmethod
     def from_torch(cls, tensor, name=None, mean=None, std=None, *args, **kwargs):
+        import torchvision
+
         if mean and std:
             tensor = denormalize_img(tensor, mean=mean, std=std)
         image = torchvision.transforms.ToPILImage()(tensor)
@@ -163,7 +169,6 @@ class EasyImage:
     def from_numpy(cls, array, *args, **kwargs):
         image = PIL.Image.fromarray(array)
         return cls(image)
-
 
     @classmethod
     def from_pil(cls, pil_image, *args, **kwargs):
@@ -183,8 +188,7 @@ class EasyImage:
 
         return cls(pil_image, name=name, uri=uri)
 
-
-    def download(self, thread=True):
+    def download(self):
         if not self.downloaded:
             try:
                 self.image = self._load_url_uri_to_pil(self.url or self.uri)
@@ -223,10 +227,18 @@ class EasyImage:
 
         return self
 
+    def resize_shortest(self, size, inplace=False):
+        if inplace:
+            self.image = pil_resize_not_destructive(self.image, size)
+        else:
+            state = self.__dict__.copy()
+            del state['image']
+            return EasyImage(pil_resize_not_destructive(self.image.copy(), size), **state)
+
 
 class EasyImageList:
     IMAGE_FILE_TYPES = ('*.jpg', '*.png', '*.tiff', '*.jpeg')
-    GRID_TEMPLATE = "<img style='width: {size}px; height: {size}px; margin: 1px; float: left; border: 0px solid black;'title={label} src='{url}'/>" # nopep8
+    GRID_TEMPLATE = "<img style='width: {size}px; height: {size}px; margin: 1px; float: left; border: 0px solid black;'title={label} src='{url}'/>"  # nopep8
     open_browser = CTX == 'terminal'
 
     def __len__(self):
@@ -247,7 +259,6 @@ class EasyImageList:
     @property
     def all_labels(self):
         return sorted(list(set(list(chain(*[im.label for im in self.images])))))
-
 
     def download(self):
         def _download(im):
@@ -275,7 +286,8 @@ class EasyImageList:
         def _draw(im):
             try:
                 im.draw_boxes()
-            except:
+            except Exception as e:
+                print(e)
                 print("Failed drawing boxes")
 
         with ThreadPoolExecutor(100) as tpe:
@@ -373,7 +385,7 @@ class EasyImageList:
         else:
             self.visualize_grid_html(self.images, size=size)
 
-    def one_by_one(self):
+    def _popup_one_by_one(self):
         import cv2
         for image in self.images:
             cv2.imshow('image', cv2.cvtColor(np.array(image.image), cv2.COLOR_RGB2BGR))
@@ -416,3 +428,13 @@ class EasyImageList:
             self.visualize_grid_html(images)
 
         interact(activate, x=w)
+
+    def one_by_one(self, size=300):
+
+        def _one_by_one_widget(i=(0, len(self.images) - 1)):
+            return self.images[i].resize_shortest(size, inplace=False).show()
+
+        if CTX == 'jupyter':
+            interact(_one_by_one_widget)
+        else:
+            self._popup_one_by_one()

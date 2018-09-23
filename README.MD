@@ -153,6 +153,12 @@ easy_list = EasyImageList.from_glob('tests/test_data/image_folder/*.jpg')
 ```
 
 ```python
+easy_list = EasyImageList.from_pil('tests/test_data/image_folder/*.jpg')
+
+<ImageList with 3 EasyImages>
+```
+
+```python
 # sometimes its handy to have a numpy array like image
 r = easy_list.visualize_grid_numpy(montage_shape=(3,2))
 ```

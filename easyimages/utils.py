@@ -1,14 +1,34 @@
 import io
+import os
 from itertools import cycle
 
+import PIL
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
-import torch
 from IPython import get_ipython
 from PIL import Image, ImageDraw, ImageFont
-import os
+
 dir_path = os.path.dirname(os.path.realpath(__file__))
+
+
+def pil_resize_not_destructive(pil_image, width):
+    """
+
+    Parameters
+    ----------
+    pil_image
+    width
+
+    Returns
+    -------
+
+    """
+    wpercent = (width / float(pil_image.size[0]))
+    hsize = int((float(pil_image.size[1]) * float(wpercent)))
+    img = pil_image.resize((width, hsize), PIL.Image.ANTIALIAS)
+
+    return img
 
 def figure2img(f):
     """
@@ -33,6 +53,8 @@ def figure2img(f):
 
 
 def denormalize_img(image, mean, std):
+    import torch
+
     return image * torch.Tensor(np.array(std).reshape(3, 1, 1)) + \
            torch.Tensor(np.array(mean).reshape(3, 1, 1))
 
