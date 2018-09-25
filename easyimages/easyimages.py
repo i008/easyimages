@@ -20,7 +20,9 @@ from IPython.display import display, HTML
 from PIL import Image
 from imutils.convenience import build_montages
 from ipywidgets import interact
+from copy import deepcopy
 
+from easyimages.logger import logger
 from easyimages.utils import denormalize_img, draw_text_on_image, get_execution_context, visualize_bboxes, \
     pil_resize_not_destructive
 
@@ -30,7 +32,9 @@ CTX = get_execution_context()
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
+import logme
 
+@logme.log
 class EasyImage:
     def __repr__(self):
         return str('EasyImageObject: {} | labels: {} | downloaded: {} | size: {} |'.format(
@@ -49,6 +53,8 @@ class EasyImage:
                  *args,
                  **kwargs,
                  ):
+
+        logger.warning("!!!!")
 
         assert isinstance(boxes, (list, type(None)))
         assert isinstance(label, (list, type(None)))
@@ -162,6 +168,7 @@ class EasyImage:
             name = str(uuid.uuid4())[:8] + '.jpg'
         return cls(image, name=name, *args, **kwargs)
 
+    @classmethod
     def from_tensorflow(cls, tensor, *args, **kwargs):
         raise NotImplementedError
 
@@ -228,12 +235,13 @@ class EasyImage:
         return self
 
     def resize_shortest(self, size, inplace=False):
+        image = pil_resize_not_destructive(self.image, size)
         if inplace:
-            self.image = pil_resize_not_destructive(self.image, size)
+            self.image = image
         else:
-            state = self.__dict__.copy()
-            del state['image']
-            return EasyImage(pil_resize_not_destructive(self.image.copy(), size), **state)
+            curr_obj = deepcopy(self)
+            curr_obj.image = image
+            return curr_obj
 
 
 class EasyImageList:

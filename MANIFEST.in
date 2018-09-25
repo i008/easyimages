@@ -5,6 +5,7 @@ include LICENSE
 include README.MD
 include easyimages/Verdana.ttf
 include easyimages/imgcat.txt
+include requirements.txt
 
 recursive-include tests *
 recursive-exclude * __pycache__

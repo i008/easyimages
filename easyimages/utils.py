@@ -4,10 +4,13 @@ from itertools import cycle
 
 import PIL
 import matplotlib as mpl
+mpl.use('agg')
+
 import matplotlib.pyplot as plt
 import numpy as np
 from IPython import get_ipython
 from PIL import Image, ImageDraw, ImageFont
+
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
