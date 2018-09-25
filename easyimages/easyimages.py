@@ -32,6 +32,7 @@ CTX = get_execution_context()
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
+
 class EasyImage:
     def __repr__(self):
         return str('EasyImageObject: {} | labels: {} | downloaded: {} | size: {} |'.format(
@@ -259,7 +260,13 @@ class EasyImageList:
         self.images = images
 
     def __repr__(self):
-        return "<ImageList with {} EasyImages>".format(len(self.images))
+        return "<ImageList with {} EasyImages>".format(len(self))
+
+    def _validate_can_render_html(self):
+        assert all([i.uri for i in self.images]) or all([i.url for i in self.images]), "In oder to display images as " \
+                                                                                       "HTML they have to provide " \
+                                                                                       "a url or uri(images stored " \
+                                                                                       "locally"
 
     @property
     def all_labels(self):
@@ -278,6 +285,9 @@ class EasyImageList:
         return self
 
     def save(self, base_path, n_threads=100):
+        p = pathlib.Path(base_path)
+        p.mkdir(exist_ok=True)
+
         def _save(im):
             try:
                 im.save(base_path)
@@ -353,8 +363,7 @@ class EasyImageList:
         for image in images:
             p = image.uri or image.url
             if not 'http' in str(p):
-                if open_browser:
-                    p = p.absolute()
+                p = p.absolute()
             if CTX == 'jupyter' and not open_browser and 'http' not in str(p):
                 import subprocess
                 notebook_path = pathlib.Path(os.getcwd())
@@ -363,7 +372,7 @@ class EasyImageList:
                 except ValueError:
                     raise ValueError(
                         "In notebook mode your data has to stored within Jupyter access "
-                        "(has to be relative to  !pwd")
+                        "(has to be relative to  !pwd = {}".format(os.getcwd()))
 
             templates.append(self.GRID_TEMPLATE.format(url=p, label=image.label, size=size))
         html = ''.join(templates)
@@ -380,6 +389,7 @@ class EasyImageList:
         return html
 
     def html(self, by_class=True, sample=None, size=100):
+        self._validate_can_render_html()
         if self.all_labels and by_class:
             for label_name in self.all_labels:
                 print("Drawing {}".format(label_name))
