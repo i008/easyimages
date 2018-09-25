@@ -32,9 +32,6 @@ CTX = get_execution_context()
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-import logme
-
-@logme.log
 class EasyImage:
     def __repr__(self):
         return str('EasyImageObject: {} | labels: {} | downloaded: {} | size: {} |'.format(
