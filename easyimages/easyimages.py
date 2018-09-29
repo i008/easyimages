@@ -469,6 +469,10 @@ class EasyImageList:
             self._popup_one_by_one()
 
     def to_neptune(self):
+        """
+        Sends a image list to neptune (http://neptune.ml)
+        :return:
+        """
         import neptune
         ctx = neptune.Context()
         channel_name = 'images_{}'
@@ -476,7 +480,7 @@ class EasyImageList:
         for i, image in enumerate(self.images):
             if i % 100 == 0:
                 channel_count += 1
-            ctx.channel_send(channel_name.format(channel_count), neptune.Image(
-                name=image.name,
-                description=str(image.label),
-                data=image.image))
+                ctx.channel_send(
+                    channel_name.format(channel_count), neptune.Image(name=image.name,
+                                                                      description=str(image.label),
+                                                                      data=image.image))
