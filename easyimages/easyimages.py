@@ -21,7 +21,6 @@ from PIL import Image
 from imutils.convenience import build_montages
 from ipywidgets import interact
 from copy import deepcopy
-
 from easyimages.logger import logger
 from easyimages.utils import denormalize_img, draw_text_on_image, get_execution_context, visualize_bboxes, \
     pil_resize_not_destructive
@@ -248,7 +247,7 @@ class EasyImageList:
     open_browser = CTX == 'terminal'
 
     def __len__(self):
-        return len(self.images)
+        return len(list(self.images))
 
     def __getitem__(self, ix):
         return self.images[ix]
@@ -257,16 +256,24 @@ class EasyImageList:
         return iter(self.images)
 
     def __init__(self, images, *args, **kwargs):
-        self.images = images
+        self.ims = images
+        self.f = None
 
     def __repr__(self):
-        return "<ImageList with {} EasyImages>".format(len(self))
+        return "<ImageList with {} EasyImages [filter {}]>".format(len(self), 'ON' if self.f is not None else 'OFF')
 
     def _validate_can_render_html(self):
         assert all([i.uri for i in self.images]) or all([i.url for i in self.images]), "In oder to display images as " \
                                                                                        "HTML they have to provide " \
-                                                                                       "a url or uri(images stored " \
-                                                                                       "locally"
+                                                                                    "a url or uri(images stored " \
+                                                                                   "locally"
+
+    @property
+    def images(self):
+        if self.f is not None:
+            return self.f(self.ims)
+        else:
+            return self.ims
 
     @property
     def all_labels(self):
@@ -388,6 +395,9 @@ class EasyImageList:
                 display(HTML(html))
         return html
 
+    def set_filter(self, f=lambda x: x):
+        self.f = f
+
     def html(self, by_class=True, sample=None, size=100):
         self._validate_can_render_html()
         if self.all_labels and by_class:
@@ -457,3 +467,16 @@ class EasyImageList:
             interact(_one_by_one_widget)
         else:
             self._popup_one_by_one()
+
+    def to_neptune(self):
+        import neptune
+        ctx = neptune.Context()
+        channel_name = 'images_{}'
+        channel_count = 0
+        for i, image in enumerate(self.images):
+            if i % 100 == 0:
+                channel_count += 1
+            ctx.channel_send(channel_name.format(channel_count), neptune.Image(
+                name=image.name,
+                description=str(image.label),
+                data=image.image))
