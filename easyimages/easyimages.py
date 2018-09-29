@@ -398,7 +398,11 @@ class EasyImageList:
                     images = np.random.choice(images, sample)
                 self.visualize_grid_html(images, show=True, size=size)
         else:
-            self.visualize_grid_html(self.images, size=size)
+            if sample:
+                images = np.random.choice(self.images, sample)
+            else:
+                images = self.images
+            self.visualize_grid_html(images, size=size)
 
     def _popup_one_by_one(self):
         import cv2
