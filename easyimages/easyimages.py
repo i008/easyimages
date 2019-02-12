@@ -7,6 +7,8 @@ import pathlib
 import subprocess
 import urllib
 import uuid
+import shutil
+
 from collections import namedtuple
 from concurrent.futures import ThreadPoolExecutor
 from itertools import chain
@@ -21,9 +23,8 @@ from PIL import Image
 from imutils.convenience import build_montages
 from ipywidgets import interact
 from copy import deepcopy
-from easyimages.logger import logger
-from easyimages.utils import denormalize_img, draw_text_on_image, get_execution_context, visualize_bboxes, \
-    pil_resize_not_destructive
+from easyimages.utils import (
+    denormalize_img, draw_text_on_image, get_execution_context, pil_resize_not_destructive, vis_boxes_on_image)
 
 bbox = namedtuple('bbox_abs', ['x1', 'y1', 'x2', 'y2', 'score', 'label_name'])
 label = namedtuple('label', ['label'])
@@ -51,8 +52,6 @@ class EasyImage:
                  **kwargs,
                  ):
 
-        logger.warning("!!!!")
-
         assert isinstance(boxes, (list, type(None)))
         assert isinstance(label, (list, type(None)))
 
@@ -71,8 +70,12 @@ class EasyImage:
         if image is not None:
             self.downloaded = True
 
+        if not self.name:
+            self.name = ''
+
         self.url = url
         self.uri = uri
+        self.display_uri = uri
         self.image = image
         self.boxes = boxes or []
         self.label = label or []
@@ -190,7 +193,7 @@ class EasyImage:
             name = str(pathlib.Path(pil_image.filename).name)
             uri = pathlib.Path(pil_image.filename)
 
-        return cls(pil_image, name=name, uri=uri)
+        return cls(pil_image, name=name, uri=uri, *args, **kwargs)
 
     def download(self):
         if not self.downloaded:
@@ -202,17 +205,33 @@ class EasyImage:
                 self.download_failed = True
         return self
 
+    def _tuple_boxes_to_lists(self):
+        boxcoord = []
+        classes = []
+        scores = []
+        for box in self.boxes:
+            boxcoord.append(box[:4])
+            classes.append(box[-1])
+            scores.append(box[4])
+
+        return boxcoord, classes, scores
+
     def draw_boxes(self, threshold=0.1):
         assert self.boxes, "Cant draw boxes if they are not provided"
         assert self.image
-        self.image = visualize_bboxes(self.image, self.boxes, threshold=threshold)
+
+        boxcoord, classes, scores = self._tuple_boxes_to_lists()
+
+        self.image = vis_boxes_on_image(self.image, boxes=boxcoord, label_names=classes, scores=scores,
+                                        box_order='tlbr')
         return self
 
     def show_boxes(self, threshold=0.1):
         assert self.boxes, "Cant draw boxes if they are not provided"
         assert self.image
+        boxcoord, classes, scores = self._tuple_boxes_to_lists()
 
-        return visualize_bboxes(self.image, self.boxes, threshold=threshold)
+        return vis_boxes_on_image(self.image, boxes=boxcoord, label_names=classes, scores=scores, box_order='tlbr')
 
     def draw_label(self, font_size=40):
         draw_text_on_image(self.image, str(self.label), font_size=font_size)
@@ -243,7 +262,7 @@ class EasyImage:
 
 class EasyImageList:
     IMAGE_FILE_TYPES = ('*.jpg', '*.png', '*.tiff', '*.jpeg')
-    GRID_TEMPLATE = "<img style='width: {size}px; height: {size}px; margin: 1px; float: left; border: 0px solid black;'title={label} src='{url}'/>"  # nopep8
+    GRID_TEMPLATE = """<div class="zoom"><img style='width: {size}px; height: {size}px; margin: 1px; float: left; border: 0px solid black;'title={label} src='{url}'/></div>"""
     open_browser = CTX == 'terminal'
 
     def __len__(self):
@@ -265,8 +284,36 @@ class EasyImageList:
     def _validate_can_render_html(self):
         assert all([i.uri for i in self.images]) or all([i.url for i in self.images]), "In oder to display images as " \
                                                                                        "HTML they have to provide " \
-                                                                                    "a url or uri(images stored " \
-                                                                                   "locally"
+                                                                                       "a url or uri(images stored " \
+                                                                                       "locally"
+
+    def symlink_images(self, base_path):
+        """
+
+        :param base_path:
+        :return:
+        """
+
+        if not isinstance(base_path, pathlib.Path):
+            base_path = pathlib.Path(base_path)
+        if base_path.exists():
+            shutil.rmtree(str(base_path))
+        else:
+            base_path.mkdir(exist_ok=True)
+        destination = [pathlib.Path(base_path) / i.uri.name for i in self.images]
+        targets = [i.uri for i in self.images]
+
+        for target, dest in zip(targets, destination):
+            os.symlink(target, dest)
+
+        for i, d in zip(self.images, destination):
+            i.display_uri = d
+
+        self.symlink_path = base_path
+
+    def clean_symlink(self):
+        shutil.rmtree(self.symlink_path)
+        for i in self.images: i.display_uri = i.uri
 
     @property
     def images(self):
@@ -365,10 +412,18 @@ class EasyImageList:
     def from_pil(cls, list_of_pil_images):
         return cls([EasyImage.from_pil(i) for i in list_of_pil_images])
 
+    @classmethod
+    def from_list_of_uris(cls, list_of_uris):
+        return cls([EasyImage.from_file(f) for f in list_of_uris])
+
+    def from_fastai_databunch(self, fastai_data_bunch):
+        from fastai.vision import ImageDataBunch
+        assert isinstance(fastai_data_bunch, ImageDataBunch)
+
     def visualize_grid_html(self, images, open_browser=open_browser, show=True, size=100):
         templates = []
         for image in images:
-            p = image.uri or image.url
+            p = image.display_uri or image.url
             if not 'http' in str(p):
                 p = p.absolute()
             if CTX == 'jupyter' and not open_browser and 'http' not in str(p):
