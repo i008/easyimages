@@ -1,7 +1,6 @@
 import io
 import os
 import torch
-from itertools import cycle
 import PIL
 import matplotlib as mpl
 import torchvision
@@ -64,53 +63,6 @@ def denormalize_img(image, mean, std):
            torch.Tensor(np.array(mean).reshape(3, 1, 1))
 
 
-# def visualize_bboxes(image, boxes, threshold=0.1, return_format='PIL'):
-#     if not isinstance(image, np.ndarray):
-#         # othweriwse assume PIL
-#         image = np.array(image)
-#
-#     cycol = cycle('bgrcmk')
-#     detection_figure = plt.figure(frameon=False)
-#     dpi = mpl.rcParams['figure.dpi']
-#
-#     imrows, imcols = image.shape[0], image.shape[1]
-#     detection_figure.set_size_inches((imrows / dpi) * 1.5, (imcols / dpi) * 1.5)
-#     current_axis = plt.Axes(detection_figure, [0., 0., 1., 1.])
-#     current_axis.set_axis_off()
-#     detection_figure.add_axes(current_axis)
-#     current_axis.imshow(image)
-#
-#     for box in boxes:
-#         if box.score and box.score < threshold:
-#             continue
-#
-#         label = '{0} {1:.2f}'.format(box.label_name, box.score or '1')
-#         color = next(cycol)
-#         line = 4
-#         current_axis.add_patch(
-#             plt.Rectangle((box.x1, box.y1),
-#                           box.x2 - box.x1,
-#                           box.y2 - box.y1,
-#                           color=color,
-#                           fill=False, linewidth=line))
-#
-#         current_axis.text(box.x1, box.y1, label, size='x-large', color='white',
-#                           bbox={'facecolor': color, 'alpha': 1.0})
-#
-#     current_axis.get_xaxis().set_visible(False)
-#     current_axis.get_yaxis().set_visible(False)
-#     plt.close()
-#
-#     if return_format == 'PIL':
-#         return figure2img(detection_figure).convert('RGB')
-#
-#     elif return_format == 'NP':
-#         return np.array(figure2img(detection_figure))[:, :, :3]
-#
-#     else:
-#         return detection_figure
-
-
 def xyxy2xywh(bb):
     x, y = bb[0], bb[1]
     width = bb[2] - bb[0] + 1
@@ -122,8 +74,8 @@ def change_box_order(boxes, input_order='tlbr', output_order='cwh', target_type=
     '''Change box order between:
 
     input_order:
-    tlbr (top-left-bottom-right, x1y1x2y2)
-    cwh  (center-width-height, (xywh)) center is in the middle of the box
+    tlbr (top-left/bottom-right, x1y1x2y2)
+    cwh  (center/width-height, (xywh)) center is in the middle of the box
 
     valid output order:
     all of the above plus:
@@ -153,15 +105,14 @@ def change_box_order(boxes, input_order='tlbr', output_order='cwh', target_type=
         boxes = cat([a - b / 2, a + b / 2], 1)
 
     # transforms from xyxy/tlbr to any
-    a = boxes[:, :2]
-    b = boxes[:, 2:]
+    x1y1 = boxes[:, :2]
+    x2y2 = boxes[:, 2:]
 
     if output_order == 'tlwh':
-        return cat([a, b - a], axis=1)
-
+        return cat([x1y1, x2y2 - x1y1], axis=1)
 
     elif output_order == 'cwh':
-        boxes = cat([(a + b) / 2, b - a + 1], 1)
+        boxes = cat([(x1y1 + x2y2) / 2, x2y2 - x1y1 + 1], 1)
 
     else:
         raise ValueError("")
@@ -169,23 +120,23 @@ def change_box_order(boxes, input_order='tlbr', output_order='cwh', target_type=
     return boxes
 
 
-def vis_boxes_on_image(img, boxes=None, label_names=None, scores=None, box_order='tlbr'):
-    '''Visualize a color image.
-    Args:
-      img: (PIL.Image/tensor) image to visualize.
-      boxes: (tensor) bounding boxes, sized [#obj, 4].
-      label_names: (list) label names.
-      scores: (list) confidence scores.
-    Reference:
-      https://github.com/chainer/chainercv/blob/master/chainercv/visualizations/vis_bbox.py
-      https://github.com/chainer/chainercv/blob/master/chainercv/visualizations/vis_image.py
-    '''
+def vis_image(img, boxes=None, label_names=None, scores=None, box_order='tlbr', axis_off=False):
+    """
+
+    :param img: PIL.Image
+    :param boxes: [[x1,y1,x2,y2], ... ]
+    :param label_names:  ['car','dog' ... ]
+    :param scores:  [0.5, 1]
+    :param box_order: 'tlbr', 'tlwh'
+    :param axis_off:
+    :return:
+    """
+
     # Plot image
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
     if isinstance(img, torch.Tensor):
         img = torchvision.transforms.ToPILImage()(img)
-
     ax.imshow(img)
 
     boxes = change_box_order(boxes, input_order=box_order, output_order='tlwh')
@@ -212,8 +163,8 @@ def vis_boxes_on_image(img, boxes=None, label_names=None, scores=None, box_order
                         bbox={'facecolor': 'white', 'alpha': 0.3, 'pad': 2})
 
     # Show
-    # plt.axis('off')
-    # plt.show()
+    if axis_off:
+        plt.axis('off')
     return fig
 
 
