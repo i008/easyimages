@@ -24,7 +24,7 @@ from imutils.convenience import build_montages
 from ipywidgets import interact
 from copy import deepcopy
 from easyimages.utils import (
-    denormalize_img, draw_text_on_image, get_execution_context, pil_resize_not_destructive, vis_boxes_on_image)
+    denormalize_img, draw_text_on_image, get_execution_context, pil_resize_not_destructive, vis_image)
 
 bbox = namedtuple('bbox_abs', ['x1', 'y1', 'x2', 'y2', 'score', 'label_name'])
 label = namedtuple('label', ['label'])
@@ -222,7 +222,7 @@ class EasyImage:
 
         boxcoord, classes, scores = self._tuple_boxes_to_lists()
 
-        self.image = vis_boxes_on_image(self.image, boxes=boxcoord, label_names=classes, scores=scores,
+        self.image = vis_image(self.image, boxes=boxcoord, label_names=classes, scores=scores,
                                         box_order='tlbr')
         return self
 
@@ -231,7 +231,7 @@ class EasyImage:
         assert self.image
         boxcoord, classes, scores = self._tuple_boxes_to_lists()
 
-        return vis_boxes_on_image(self.image, boxes=boxcoord, label_names=classes, scores=scores, box_order='tlbr')
+        return vis_image(self.image, boxes=boxcoord, label_names=classes, scores=scores, box_order='tlbr')
 
     def draw_label(self, font_size=40):
         draw_text_on_image(self.image, str(self.label), font_size=font_size)

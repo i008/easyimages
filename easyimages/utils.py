@@ -88,16 +88,15 @@ def change_box_order(boxes, input_order='tlbr', output_order='cwh', target_type=
     assert input_order in ['tlbr', 'cwh']
     assert output_order in ['tlbr', 'cwh', 'tlwh']
 
-    if not isinstance(boxes, np.ndarray):
+
+
+    if isinstance(boxes, np.ndarray):
+        cat = np.concatenate
+    elif isinstance(boxes, list):
         boxes = np.array(boxes)
         cat = np.concatenate
-        stack = np.stack
     elif isinstance(boxes, torch.Tensor):
         cat = torch.cat
-        stack = torch.stack
-    elif isinstance(boxes, np.ndarray):
-        cat = np.concatenate
-        stack = np.stack
 
     if input_order == 'cwh':
         a = boxes[:, :2]
