@@ -9,6 +9,6 @@ ipython
 Pillow>=5.2.0
 opencv-python
 tox-travis
-tqdm
+tqdm==4.19
 ipywidgets
 
