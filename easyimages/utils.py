@@ -72,23 +72,21 @@ def xyxy2xywh(bb):
 
 def change_box_order(boxes, input_order='tlbr', output_order='cwh', target_type=None):
     '''Change box order between:
-
     input_order:
     tlbr (top-left/bottom-right, x1y1x2y2)
     cwh  (center/width-height, (xywh)) center is in the middle of the box
-
     valid output order:
     all of the above plus:
     tlwh (top-left-width-height) this format is common in matplotlib
-
     '''
+
+    if input_order == output_order:
+        return boxes
     if input_order == 'tlwh':
         raise NotImplementedError
-    assert input_order != output_order
-    assert input_order in ['tlbr', 'cwh']
+
+    assert input_order in ['tlbr', 'cwh', 'tlwh']
     assert output_order in ['tlbr', 'cwh', 'tlwh']
-
-
 
     if isinstance(boxes, np.ndarray):
         cat = np.concatenate
@@ -98,12 +96,19 @@ def change_box_order(boxes, input_order='tlbr', output_order='cwh', target_type=
     elif isinstance(boxes, torch.Tensor):
         cat = torch.cat
 
+    # change order from cwh -> tlbr
     if input_order == 'cwh':
         a = boxes[:, :2]
         b = boxes[:, 2:]
         boxes = cat([a - b / 2, a + b / 2], 1)
 
-    # transforms from xyxy/tlbr to any
+    # change order from tlwh -> tlbr
+    if input_order == 'tlwh':
+        xy = boxes[:, :2]
+        wh = boxes[:, 2:]
+        boxes = cat([xy, xy + wh], 1)
+
+        # transforms from tlbr to any
     x1y1 = boxes[:, :2]
     x2y2 = boxes[:, 2:]
 
