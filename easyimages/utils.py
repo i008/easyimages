@@ -124,9 +124,10 @@ def change_box_order(boxes, input_order='tlbr', output_order='cwh', target_type=
     return boxes
 
 
-def vis_image(img, boxes=None, label_names=None, scores=None, box_order='tlbr', axis_off=False):
+def vis_image(img, boxes=None, label_names=None, scores=None, box_order='tlbr', axis_off=False, figsize=(15, 10)):
     """
 
+    :param figsize:
     :param img: PIL.Image
     :param boxes: [[x1,y1,x2,y2], ... ]
     :param label_names:  ['car','dog' ... ]
@@ -137,7 +138,7 @@ def vis_image(img, boxes=None, label_names=None, scores=None, box_order='tlbr', 
     """
 
     # Plot image
-    fig = plt.figure()
+    fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(1, 1, 1)
     if isinstance(img, torch.Tensor):
         img = torchvision.transforms.ToPILImage()(img)
