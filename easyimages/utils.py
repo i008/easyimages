@@ -82,8 +82,6 @@ def change_box_order(boxes, input_order='tlbr', output_order='cwh', target_type=
 
     if input_order == output_order:
         return boxes
-    if input_order == 'tlwh':
-        raise NotImplementedError
 
     assert input_order in ['tlbr', 'cwh', 'tlwh']
     assert output_order in ['tlbr', 'cwh', 'tlwh']
@@ -108,18 +106,18 @@ def change_box_order(boxes, input_order='tlbr', output_order='cwh', target_type=
         wh = boxes[:, 2:]
         boxes = cat([xy, xy + wh], 1)
 
-        # transforms from tlbr to any
+    # transforms from tlbr to anys
     x1y1 = boxes[:, :2]
     x2y2 = boxes[:, 2:]
 
     if output_order == 'tlwh':
         return cat([x1y1, x2y2 - x1y1], axis=1)
-
     elif output_order == 'cwh':
         boxes = cat([(x1y1 + x2y2) / 2, x2y2 - x1y1 + 1], 1)
-
+    elif output_order == 'tlbr':
+        return boxes
     else:
-        raise ValueError("")
+        raise ValueError("wtf")
 
     return boxes
 
