@@ -10,4 +10,5 @@ Pillow>=5.2.0
 opencv-python
 tox-travis
 ipywidgets
+pycocotools
 

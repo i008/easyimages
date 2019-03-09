@@ -11,6 +11,8 @@ import numpy as np
 from IPython import get_ipython
 from PIL import Image, ImageDraw, ImageFont
 import matplotlib.pyplot as plt
+from pycocotools.coco import COCO
+
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -120,6 +122,27 @@ def change_box_order(boxes, input_order='tlbr', output_order='cwh', target_type=
         raise ValueError("wtf")
 
     return boxes
+
+
+def visualize_one_coco(coco_dataset, base_path, image_id=None):
+    if isinstance(coco_dataset, str):
+        coco = COCO(coco_dataset)
+    elif isinstance(coco_dataset, COCO):
+        coco = coco_dataset
+    else:
+        ValueError("Wrong input dataset should be a path to COCO json or coco.COCO instance")
+
+    if image_id is None:
+        image_id = np.random.choice(coco.getImgIds())
+
+    image = coco.loadImgs(ids=[image_id])
+    pil_image = PIL.Image.open(os.path.join(base_path, image[0]['file_name'].strip("0")))
+    annotations_ids = coco.getAnnIds(imgIds=[image_id])
+    annotations = coco.loadAnns(annotations_ids)
+    boxes = [a['bbox'] for a in annotations]
+    categories = [str(a['category_id']) + '-' + str(coco.cats[a['category_id']]['name']) for a in annotations]
+    f = vis_image(pil_image, boxes, label_names=categories, box_order='tlwh')
+    return f
 
 
 def vis_image(img, boxes=None, label_names=None, scores=None, box_order='tlbr', axis_off=False, figsize=(15, 10)):
