@@ -413,8 +413,8 @@ class EasyImageList:
         return cls([EasyImage.from_pil(i) for i in list_of_pil_images])
 
     @classmethod
-    def from_list_of_uris(cls, list_of_uris):
-        return cls([EasyImage.from_file(f) for f in list_of_uris])
+    def from_list_of_uris(cls, list_of_uris, lazy=True):
+        return cls([EasyImage.from_file(f, lazy=lazy) for f in list_of_uris])
 
     def from_fastai_databunch(self, fastai_data_bunch):
         from fastai.vision import ImageDataBunch
