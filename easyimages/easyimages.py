@@ -287,7 +287,7 @@ class EasyImageList:
                                                                                        "a url or uri(images stored " \
                                                                                        "locally"
 
-    def symlink_images(self, base_path):
+    def symlink_images(self, base_path='./temp_link'):
         """
 
         :param base_path:
@@ -298,8 +298,7 @@ class EasyImageList:
             base_path = pathlib.Path(base_path)
         if base_path.exists():
             shutil.rmtree(str(base_path))
-        else:
-            base_path.mkdir(exist_ok=True)
+        base_path.mkdir(exist_ok=True)
         destination = [pathlib.Path(base_path) / i.uri.name for i in self.images]
         targets = [i.uri for i in self.images]
 
