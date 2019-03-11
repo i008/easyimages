@@ -136,7 +136,7 @@ def visualize_one_coco(coco_dataset, base_path, image_id=None):
         image_id = np.random.choice(coco.getImgIds())
 
     image = coco.loadImgs(ids=[image_id])
-    pil_image = PIL.Image.open(os.path.join(base_path, image[0]['file_name'].strip("0")))
+    pil_image = PIL.Image.open(os.path.join(base_path, image[0]['file_name']))
     annotations_ids = coco.getAnnIds(imgIds=[image_id])
     annotations = coco.loadAnns(annotations_ids)
     boxes = [a['bbox'] for a in annotations]
