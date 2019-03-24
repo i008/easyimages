@@ -199,6 +199,27 @@ def get_pil_font(font_size):
     return font
 
 
+def load_url_uri_to_pil(url_uri):
+    """
+    Parameters
+    ----------
+    url_uri
+    Returns
+    -------
+    PIL.Image
+    """
+    if isinstance(url_uri, pathlib.Path):
+        url_uri = str(url_uri)
+
+    if url_uri.startswith('http'):
+        response = requests.get(url_uri)
+        image_original = io.BytesIO(response.content)
+        image_pil = Image.open(image_original).convert('RGB')
+    else:
+        image_pil = Image.open(url_uri).convert('RGB')
+    return image_pil
+
+
 def make_notebook_wider():
     from IPython.display import HTML, display
     display(HTML("<style>.container { width:100% !important; }</style>"))
