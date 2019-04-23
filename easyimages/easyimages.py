@@ -70,7 +70,7 @@ class EasyImage:
         if image is not None:
             self.downloaded = True
 
-        if not self.name:
+        if not hasattr(self, 'name'):
             self.name = ''
 
         self.url = url
