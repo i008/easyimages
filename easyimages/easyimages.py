@@ -49,7 +49,7 @@ class EasyImage:
                  label=None,
                  mask=None,
                  *args,
-                 **kwargs,
+                 **kwargs
                  ):
 
         assert isinstance(boxes, (list, type(None)))
