@@ -9,7 +9,9 @@ deploy:
   provider: pypi
   distributions: sdist bdist_wheel
   user: i008
+  skip_existing: true
   on:
+    tags: true
     repo: i008/easyimages
     python: 3.6
   password:
