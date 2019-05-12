@@ -222,9 +222,8 @@ class EasyImage:
 
         boxcoord, classes, scores = self._tuple_boxes_to_lists()
 
-        self.image = vis_image(self.image, boxes=boxcoord, label_names=classes, scores=scores,
+        return vis_image(self.image, boxes=boxcoord, label_names=classes, scores=scores,
                                         box_order='tlbr')
-        return self
 
     def show_boxes(self, threshold=0.1):
         assert self.boxes, "Cant draw boxes if they are not provided"
