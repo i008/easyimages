@@ -11,6 +11,7 @@ deploy:
   distributions: sdist bdist_wheel
   user: i008
   skip_existing: true
+  skip_cleanup: true
   on:
     tags: true
     repo: i008/easyimages
