@@ -11,7 +11,7 @@ except ImportError:  # for pip < 10
     from pip.req import parse_requirements
 import os
 
-__version__ = '1.01'
+__version__ = '1.02'
 
 with open('README.MD') as readme_file:
     readme = readme_file.read()
