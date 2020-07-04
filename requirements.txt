@@ -1,7 +1,5 @@
 pip
 cython
-torch>=0.3
-torchvision
 imutils==0.4.6
 matplotlib
 requests>=2.11.1

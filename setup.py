@@ -48,7 +48,7 @@ setup(
     packages=find_packages(include=['easyimages']),
     setup_requires=reqs,
     test_suite='tests',
-    tests_require=reqs,
+    tests_require=reqs + ['torch', 'torchvision'],
     url='https://github.com/i008/easyimages',
     version=__version__,
     zip_safe=False,
