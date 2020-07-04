@@ -3,6 +3,7 @@ python:
 - 3.6
 install:
 - pip install -q cython
+- pip install torch torchvision
 - python setup.py install
 script: pytest
 deploy:
