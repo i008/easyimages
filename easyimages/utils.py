@@ -1,11 +1,8 @@
 import io
 import os
 import pathlib
-
-import torch
 import PIL
 import matplotlib as mpl
-import torchvision
 
 mpl.use('agg')
 
@@ -117,6 +114,7 @@ def change_box_order(boxes, input_order='tlbr', output_order='cwh', target_type=
     all of the above plus:
     tlwh (top-left-width-height) this format is common in matplotlib
     '''
+    import torch
 
     if input_order == output_order:
         return boxes
@@ -193,6 +191,8 @@ def vis_image(img, boxes=None, label_names=None, scores=None, box_order='tlbr', 
     :param axis_off:
     :return:
     """
+    import torchvision
+    import torch
 
     # Plot image
     fig = plt.figure(figsize=figsize)
