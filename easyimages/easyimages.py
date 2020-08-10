@@ -32,6 +32,8 @@ CTX = get_execution_context()
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
+IMAGENET_MEAN = (0.485, 0.456, 0.406)
+IMAGENET_STD = (0.229, 0.224, 0.225)
 
 class EasyImage:
     def __repr__(self):
@@ -403,7 +405,7 @@ class EasyImageList:
         return cls(ims)
 
     @classmethod
-    def from_torch_batch(cls, batch, mean, std):
+    def from_torch_batch(cls, batch, mean=IMAGENET_MEAN, std=IMAGENET_STD):
         return cls([EasyImage.from_torch(im, mean=mean, std=std) for im in batch])
 
     @classmethod
@@ -413,10 +415,6 @@ class EasyImageList:
     @classmethod
     def from_list_of_uris(cls, list_of_uris, lazy=True):
         return cls([EasyImage.from_file(f, lazy=lazy) for f in list_of_uris])
-
-    def from_fastai_databunch(self, fastai_data_bunch):
-        from fastai.vision import ImageDataBunch
-        assert isinstance(fastai_data_bunch, ImageDataBunch)
 
     def visualize_grid_html(self, images, open_browser=open_browser, show=True, size=100):
         templates = []
