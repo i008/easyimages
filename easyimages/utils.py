@@ -158,13 +158,13 @@ def change_box_order(boxes, input_order='tlbr', output_order='cwh', target_type=
     return boxes
 
 
-def visualize_one_coco(coco_dataset, base_path, image_id=None):
+def visualize_one_coco(coco_dataset, base_path, image_id=None, bbox_order='tlbr'):
     if isinstance(coco_dataset, str):
         coco = COCO(coco_dataset)
     elif isinstance(coco_dataset, COCO):
         coco = coco_dataset
     else:
-        ValueError("Wrong input dataset should be a path to COCO json or coco.COCO instance")
+        ValueError("Wrong input dataaset should be a path to COCO json or coco.COCO instance")
 
     if image_id is None:
         image_id = np.random.choice(coco.getImgIds())
@@ -175,7 +175,7 @@ def visualize_one_coco(coco_dataset, base_path, image_id=None):
     annotations = coco.loadAnns(annotations_ids)
     boxes = [a['bbox'] for a in annotations]
     categories = [str(a['category_id']) + '-' + str(coco.cats[a['category_id']]['name']) for a in annotations]
-    f = vis_image(pil_image, boxes, label_names=categories, box_order='tlwh')
+    f = vis_image(pil_image, boxes, label_names=categories, box_order=bbox_order)
     return f
 
 

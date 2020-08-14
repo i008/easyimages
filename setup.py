@@ -11,7 +11,7 @@ except ImportError:  # for pip < 10
     from pip.req import parse_requirements
 import os
 
-__version__ = '1.7'
+__version__ = '1.8'
 
 with open('README.MD') as readme_file:
     readme = readme_file.read()
@@ -27,8 +27,6 @@ try:
     reqs = [str(ir.req) for ir in install_reqs]
 except:
     reqs = [str(ir.requirement) for ir in install_reqs]
-# reqs is a list of requirement
-# e.g. ['django==1.5.1', 'mezzanine==1.4.6']
 
 setup(
     author="Jakub Cieslik",
