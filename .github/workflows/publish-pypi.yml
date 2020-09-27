@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8]
+        python-version: [3.7]
 
     steps:
     - uses: actions/checkout@v2
@@ -28,3 +28,12 @@ jobs:
     - name: Test with pytest
       run:
         pytest
+
+    - name: Build
+      run: |
+        make dist
+    - name: Publish a Python distribution to PyPI
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        user: __token__
+        password: ${{ secrets.pypi_password }}
