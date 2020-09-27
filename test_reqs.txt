@@ -1,0 +1,6 @@
+cython
+torch
+torchvision
+wheel
+flake8
+pytest
