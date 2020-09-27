@@ -1,10 +1,7 @@
 
 # easyimages
 
-[![Foo](https://img.shields.io/pypi/v/easyimages.svg)](https://pypi.python.org/pypi/easyimages)
-[![Foo](https://img.shields.io/travis/i008/easyimages.svg)](https://travis-ci.org/i008/easyimages)
-[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
-
+![Build Test Release](https://github.com/i008/easyimages/workflows/Build%20Test%20Release/badge.svg)
 
 # Info
 
