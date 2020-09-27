@@ -10,5 +10,6 @@ opencv-python
 tox-travis
 ipywidgets
 pycocotools
+pytest
 
 

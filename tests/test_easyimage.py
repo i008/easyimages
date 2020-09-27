@@ -2,13 +2,11 @@ import os
 import sys
 
 import PIL
-import torchvision
 
 sys.path.append('..')
 
 import pytest
 from PIL import Image
-from torchvision.transforms import ToTensor, transforms
 
 from easyimages import EasyImage, EasyImageList
 from easyimages import bbox
@@ -43,6 +41,9 @@ def test_lazy_image_from_url():
 
 
 def test_easy_image_from_torch():
+    import torchvision
+    from torchvision.transforms import ToTensor, transforms
+
     image = Image.open(os.path.join(dir_path, './test_data/image_folder/img_00000001.jpg'))
 
     torch_image = ToTensor()(image)
@@ -68,6 +69,9 @@ def test_error_when_trying_to_draw_boxes_when_not_provided():
 def test_from_pytorch_batch():
     MEAN = [0.485, 0.456, 0.406]
     STD = [0.229, 0.224, 0.225]
+    import torchvision
+    from torchvision.transforms import ToTensor, transforms
+
 
     Trans = torchvision.transforms.Compose([
         transforms.ToTensor(),
