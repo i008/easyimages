@@ -272,7 +272,6 @@ def get_execution_context():
     if context == 'ZMQInteractiveShell':
         return "jupyter"
 
-    print(type(context))
 
 
 def draw_text_on_image(image, text, font_size):
