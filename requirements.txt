@@ -7,7 +7,6 @@ numpy>=1.14.5
 ipython
 Pillow>=5.2.0
 opencv-python
-tox-travis
 ipywidgets
 pycocotools
 pytest
