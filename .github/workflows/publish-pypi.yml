@@ -39,9 +39,9 @@ jobs:
           user: __token__
           password: ${{ secrets.pypi_password }}
       
-      - name: Publish package to TestPyPI
-        uses: pypa/gh-action-pypi-publish@master
-        with:
-          user: admin
-          password: ${{ secrets.nexus }}
-          repository_url: http://nexus.fitly.ai/repository/fitly_pypi/
+#       - name: Publish package to TestPyPI
+#         uses: pypa/gh-action-pypi-publish@master
+#         with:
+#           user: admin
+#           password: ${{ secrets.nexus }}
+#           repository_url: http://nexus.fitly.ai/repository/fitly_pypi/
