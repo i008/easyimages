@@ -43,5 +43,5 @@ jobs:
         uses: pypa/gh-action-pypi-publish@master
         with:
           user: admin
-          password: ${{secrets.nexus}}
+          password: ${{ secrets.nexus }}
           repository_url: http://nexus.fitly.ai/repository/fitly_pypi/
